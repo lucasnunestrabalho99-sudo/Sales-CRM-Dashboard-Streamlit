@@ -90,7 +90,7 @@ def load_data(n_ativos=15000, n_inativos=3000):
             'RespUltContato': np.random.choice(['OPERADOR 1', 'OPERADOR 2', 'SISTEMA'], n_rows),
             'Resultado': np.random.choice(['VENDA', 'FALTOU DINHEIRO', 'SEM ESTOQUE', 'RECADO'], n_rows),
             'Motivo': np.random.choice(['VISITA', 'TELEFONE', 'WHATSAPP'], n_rows),
-            'OBS': ['Obs teste portfólio' for _ in range(n_rows)],
+            'OBS': ['Obs teste' for _ in range(n_rows)],
             'DataCadastro': dt_cad
         }
         
@@ -159,7 +159,7 @@ def to_excel(df):
 # APLICAÇÃO PRINCIPAL
 # =============================================================================
 
-st.title("📊 Banco de Dados de Base Ativa e Inativa (Portfólio DEMO)")
+st.title("📊 Banco de Dados de Base Ativa e Inativa")
 st.markdown("⚠️ *Aviso: Todos os dados apresentados neste painel são fictícios e gerados aleatoriamente para fins de demonstração.*")
 st.markdown("---")
 
