@@ -40,18 +40,18 @@ def load_data(n_ativos=15000, n_inativos=3000):
         n_unique_clients = int(n_rows * 0.85) if is_ativo else n_rows 
         cod_clientes = np.random.randint(10000, 10000 + n_unique_clients, n_rows)
         
-        # Datas
+        # Datas (CORRIGIDO PARA PD.SERIES)
         hoje = pd.Timestamp.now().normalize()
         dias_cad = np.random.randint(10, 1500, n_rows)
-        dt_cad = hoje - pd.to_timedelta(dias_cad, unit='d')
+        dt_cad = pd.Series(hoje - pd.to_timedelta(dias_cad, unit='d'))
         
         dias_ult_ped = np.random.randint(1, 150, n_rows)
-        dt_ult_ped = hoje - pd.to_timedelta(dias_ult_ped, unit='d')
+        dt_ult_ped = pd.Series(hoje - pd.to_timedelta(dias_ult_ped, unit='d'))
         # Algum percentual sem compra (nunca comprou)
-        dt_ult_ped[np.random.rand(n_rows) > 0.9] = pd.NaT
+        dt_ult_ped.loc[np.random.rand(n_rows) > 0.9] = pd.NaT
         
         dias_contato = np.random.randint(1, 30, n_rows)
-        dt_contato = dt_ult_ped + pd.to_timedelta(dias_contato, unit='d')
+        dt_contato = pd.Series(dt_ult_ped + pd.to_timedelta(dias_contato, unit='d'))
         
         # Financeiro
         limite = np.random.uniform(500, 50000, n_rows).round(2)
